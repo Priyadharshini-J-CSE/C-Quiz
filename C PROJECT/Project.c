@@ -13,7 +13,7 @@ void quiz1(){
     }
     else{
         if(option<=4)
-        printf(" Correct answer: 1.Dennis Ritchie\n"); 
+        printf("Wrong Answer\n Correct answer: 1.Dennis Ritchie\n"); 
         else
         printf(" Invalid choice");
     }
@@ -25,12 +25,12 @@ void quiz2(){
     printf(" Enter option: ");
     scanf("%d",&option);
     if(option==2){
-        printf(" Correct answer!\n");
+        printf("Wrong Answer\n Correct answer!\n");
         score++;
     }
     else{
          if(option<=4)
-        printf(" Correct answer: 2.Bell Laboratories\n"); 
+        printf("Wrong Answer\n Correct answer: 2.Bell Laboratories\n"); 
         else
         printf(" Invalid choice");
  }
@@ -48,7 +48,7 @@ void quiz3(){
     }
     else{
          if(option<=4)
-        printf(" Correct answer:  4.int $main;\n");
+        printf("Wrong Answer\n Correct answer:  4.int $main;\n");
         else
         printf(" Invalid choice");
  }
@@ -66,7 +66,7 @@ void quiz4(){
     }
     else{
          if(option<=4)
-         printf(" Correct answer: 1.LowerCase letters\n");
+         printf("Wrong Answer\n Correct answer: 1.LowerCase letters\n");
         else
         printf(" Invalid choice");
  }
@@ -84,7 +84,7 @@ void quiz5(){
     }
     else{
          if(option<=4)
-       printf(" Correct answer: 1.volatile\n");
+       printf("Wrong Answer\n Correct answer: 1.volatile\n");
         else
         printf(" Invalid choice");
    }
@@ -102,7 +102,7 @@ void quiz6(){
     }
     else{
          if(option<=4)
-        printf(" Correct answer: 3.const\n");
+        printf("Wrong Answer\n Correct answer: 3.const\n");
         else
         printf(" Invalid choice");
    }
@@ -120,7 +120,7 @@ void quiz7(){
     }
     else{
          if(option<=4)
-     printf(" Correct answer: 2.0 or 1\n"); 
+     printf("Wrong Answer\n Correct answer: 2.0 or 1\n"); 
         else
         printf(" Invalid choice");
    }
@@ -156,7 +156,7 @@ void quiz9(){
     }
     else{
          if(option<=4)
-      printf(" Correct answer: 4.all of the mentioned\n"); 
+      printf("Wrong Answer\n Correct answer: 4.all of the mentioned\n"); 
         else
         printf(" Invalid choice");
   }
@@ -171,9 +171,12 @@ int main()
    int choice;
    printf("\n C Quiz Game");
 	do{
-		printf("\n 1. Quiz1\n 2. Quiz2\n 3. Quiz3\n 4. Quiz4\n 5. Quiz5\n 6. Quiz6\n 7. Quiz7\n 8. Quiz8\n 9. Quiz9\n 10 Total score\n 0. Exit\n\nEnter your choice: ");
-		scanf("%d",&choice);
-		switch(choice){
+	    
+		printf("\n 1. Quiz1\n 2. Quiz2\n 3. Quiz3\n 4. Quiz4\n 5. Quiz5\n 6. Quiz6\n 7. Quiz7\n 8. Quiz8\n 9. Quiz9\n 10.Total score\n 0. Exit\n\nEnter your choice: ");
+		
+		scanf("%d",&choice); //Input the choice from the user
+	    
+	    	switch(choice){ //To select the choice and call the required function
 			case 1: quiz1();break;
 			case 2: quiz2();break;
 			case 3: quiz3();break;
@@ -184,7 +187,8 @@ int main()
 			case 8: quiz8();break;
 			case 9: quiz9();break;
 			case 10: Score();break;
-			case 0: break;
+			case 0: break;//To exit
+			default:printf("Invalid Choice");break;
 			
 			
 		}
