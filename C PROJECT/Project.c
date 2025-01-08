@@ -1,6 +1,7 @@
 
 #include <stdio.h>
 int score=0;
+int answered[9] = {0};
 void quiz1(){
     int option;
     printf("Who invented C programme?");
@@ -17,6 +18,7 @@ void quiz1(){
         else
         printf(" Invalid choice");
     }
+    answered[0] = 1; 
 }
 void quiz2(){
     int option;
@@ -25,7 +27,7 @@ void quiz2(){
     printf(" Enter option: ");
     scanf("%d",&option);
     if(option==2){
-        printf("Wrong Answer\n Correct answer!\n");
+        printf(" Correct answer!\n");
         score++;
     }
     else{
@@ -34,6 +36,7 @@ void quiz2(){
         else
         printf(" Invalid choice");
  }
+ answered[1] = 1; 
     
 }
 void quiz3(){
@@ -52,6 +55,7 @@ void quiz3(){
         else
         printf(" Invalid choice");
  }
+ answered[2] = 1; 
     
 }
 void quiz4(){
@@ -70,6 +74,7 @@ void quiz4(){
         else
         printf(" Invalid choice");
  }
+ answered[3] = 1; 
     
 }
 void quiz5(){
@@ -88,6 +93,7 @@ void quiz5(){
         else
         printf(" Invalid choice");
    }
+   answered[4] = 1; 
     
 }
 void quiz6(){
@@ -106,6 +112,7 @@ void quiz6(){
         else
         printf(" Invalid choice");
    }
+   answered[5] = 1; 
     
 }
 void quiz7(){
@@ -123,7 +130,7 @@ void quiz7(){
      printf("Wrong Answer\n Correct answer: 2.0 or 1\n"); 
         else
         printf(" Invalid choice");
-   }
+   }answered[6] = 1; 
     
 }
 void quiz8(){
@@ -138,10 +145,11 @@ void quiz8(){
     }
     else{
          if(option<=4)
-        printf(" Correct answer: 3.External\n");
+        printf("Wrong Answer\n Correct answer: 3.External\n");
         else
         printf(" Invalid choice");
    }
+   answered[7] = 1; 
     
 }
 void quiz9(){
@@ -160,6 +168,7 @@ void quiz9(){
         else
         printf(" Invalid choice");
   }
+  answered[8] = 1; 
     
 }
 
@@ -175,23 +184,32 @@ int main()
 		printf("\n 1. Quiz1\n 2. Quiz2\n 3. Quiz3\n 4. Quiz4\n 5. Quiz5\n 6. Quiz6\n 7. Quiz7\n 8. Quiz8\n 9. Quiz9\n 10.Total score\n 0. Exit\n\nEnter your choice: ");
 		
 		scanf("%d",&choice); //Input the choice from the user
-	    
-	    	switch(choice){ //To select the choice and call the required function
-			case 1: quiz1();break;
-			case 2: quiz2();break;
-			case 3: quiz3();break;
-			case 4: quiz4();break;
-			case 5: quiz5();break;
-			case 6: quiz6();break;
-			case 7: quiz7();break;
-			case 8: quiz8();break;
-			case 9: quiz9();break;
-			case 10: Score();break;
-			case 0: break;//To exit
-			default:printf("Invalid Choice");break;
-			
-			
-		}
+	    // Check if the selected quiz has been answered
+        if (choice >= 1 && choice <= 9) {
+            if (answered[choice - 1] == 1) {
+                printf("You have already answered this question. Please select a different one.\n");
+            } else {
+                switch (choice) {
+                    case 1: quiz1(); break;
+                    case 2: quiz2(); break;
+                    case 3: quiz3(); break;
+                    case 4: quiz4(); break;
+                    case 5: quiz5(); break;
+                    case 6: quiz6(); break;
+                    case 7: quiz7(); break;
+                    case 8: quiz8(); break;
+                    case 9: quiz9(); break;
+                    default: printf("Invalid Choice\n"); break;
+                }
+            }
+        } else if (choice == 10) {
+            Score();
+        } else if (choice == 0) {
+            break;
+        } else {
+            printf("Invalid Choice\n");
+        }
+		
 	}		
 	while(choice!=0);
 }
