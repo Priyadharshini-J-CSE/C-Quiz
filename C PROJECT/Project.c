@@ -1,215 +1,106 @@
-
 #include <stdio.h>
-int score=0;
-int answered[9] = {0};
-void quiz1(){
+
+int score = 0;
+
+// Define a structure to hold each quiz question
+struct Quiz {
+    char question[200];
+    char options[4][100];
+    int correctAnswer;
+    int answered;  // To check if the quiz is answered or not
+};
+
+// Initialize quizzes using the structure
+struct Quiz quizzes[9] = {
+    {"Who invented- C program?", 
+     {"1. Dennis Ritchie", "2. Guido van Rossum", "3. James Gosling", "4. Tim Berners-Lee"}, 
+     1, 0},
+
+    {"Where was the C program invented?", 
+     {"1. Sun Microsystems", "2. Bell Laboratories", "3. Netherlands", "4. Geneva"}, 
+     2, 0},
+
+    {"Which of the following is not a valid C variable name?", 
+     {"1. int number;", "2. float rate;", "3. int variable_count;", "4. int $main;"}, 
+     4, 0},
+
+    {"All keywords in C are in?", 
+     {"1. LowerCase letters", "2. UpperCase letters", "3. CamelCase letters", "4. None of the mentioned"}, 
+     1, 0},
+
+    {"Which of the following cannot be a variable name in C?", 
+     {"1. volatile", "2. true", "3. friend", "4. export"}, 
+     1, 0},
+
+    {"Which keyword is used to prevent any changes in the variable within a C program?", 
+     {"1. immutable", "2. mutable", "3. const", "4. volatile"}, 
+     3, 0},
+
+    {"What is the result of logical or relational expression in C?", 
+     {"1. True or False", "2. 0 or 1", "3. 0 if an expression is false and any positive number if an expression is true", "4. None of the mentioned"}, 
+     2, 0},
+
+    {"Functions in C Language are always", 
+     {"1. Internal", "2. Both Internal and External", "3. External", "4. External and Internal are not valid terms for functions"}, 
+     3, 0},
+
+    {"What is an example of iteration in C?", 
+     {"1. for", "2. while", "3. do-while", "4. all of the mentioned"}, 
+     4, 0}
+};
+
+// Function to display the quiz question and get user input
+void displayQuiz(int index) {
     int option;
-    printf("Who invented C programme?");
-    printf("\n 1.Dennis Ritchie\n 2.Guido van Rossum\n 3.James Gosling\n 4.Tim Berners-Lee\n");
-    printf(" Enter option: ");
-    scanf("%d",&option);
-    if(option==1){
-        printf(" Correct answer!\n");
-        score++;
+    printf("%s\n", quizzes[index].question);
+    for (int i = 0; i < 4; i++) {
+        printf("%s\n", quizzes[index].options[i]);
     }
-    else{
-        if(option<=4)
-        printf("Wrong Answer\n Correct answer: 1.Dennis Ritchie\n"); 
-        else
-        printf(" Invalid choice");
-    }
-    answered[0] = 1; 
-}
-void quiz2(){
-    int option;
-    printf("Where C programme was invented?");
-    printf("\n 1.Sun Microsystems\n 2.Bell Laboratories\n 3.Netherlands\n 4.Geneva\n");
-    printf(" Enter option: ");
-    scanf("%d",&option);
-    if(option==2){
-        printf(" Correct answer!\n");
-        score++;
-    }
-    else{
-         if(option<=4)
-        printf("Wrong Answer\n Correct answer: 2.Bell Laboratories\n"); 
-        else
-        printf(" Invalid choice");
- }
- answered[1] = 1; 
+    printf("Enter option: ");
+    scanf("%d", &option);
     
-}
-void quiz3(){
-    int option;
-    printf("Which of the following is not a valid C variable name?");
-    printf("\n 1.int number;\n 2.float rate;\n 3.int variable_count;\n 4.int $main;\n");
-    printf(" Enter option: ");
-    scanf("%d",&option);
-    if(option==4){
-        printf(" Correct answer!\n");
+    if (option == quizzes[index].correctAnswer) {
+        printf("Correct answer!\n");
         score++;
-    }
-    else{
-         if(option<=4)
-        printf("Wrong Answer\n Correct answer:  4.int $main;\n");
+    } else {
+        if (option <= 4)
+            printf("Wrong Answer\nCorrect answer: %s\n",  quizzes[index].options[quizzes[index].correctAnswer - 1]);
         else
-        printf(" Invalid choice");
- }
- answered[2] = 1; 
-    
-}
-void quiz4(){
-    int option;
-    printf("All keywords in C are in?");
-    printf("\n 1.LowerCase letters\n 2.UpperCase letters\n 3.CamelCase letters\n 4.None of the mentioned\n");
-    printf(" Enter option: ");
-    scanf("%d",&option);
-    if(option==1){
-        printf(" Correct answer!\n");
-        score++;
+            printf("Invalid choice\n");
     }
-    else{
-         if(option<=4)
-         printf("Wrong Answer\n Correct answer: 1.LowerCase letters\n");
-        else
-        printf(" Invalid choice");
- }
- answered[3] = 1; 
-    
-}
-void quiz5(){
-    int option;
-    printf(" Which of the following cannot be a variable name in C?");
-    printf("\n 1.volatile\n 2.true\n 3.friend\n 4.export\n");
-    printf(" Enter option: ");
-    scanf("%d",&option);
-    if(option==1){
-        printf(" Correct answer!\n");
-        score++;
-    }
-    else{
-         if(option<=4)
-       printf("Wrong Answer\n Correct answer: 1.volatile\n");
-        else
-        printf(" Invalid choice");
-   }
-   answered[4] = 1; 
-    
-}
-void quiz6(){
-    int option;
-    printf("Which keyword is used to prevent any changes in the variable within a C program?");
-    printf("\n 1.immutable\n 2.mutable\n 3.const\n 4.volatile\n");
-    printf(" Enter option: ");
-    scanf("%d",&option);
-    if(option==3){
-        printf(" Correct answer!\n");
-        score++;
-    }
-    else{
-         if(option<=4)
-        printf("Wrong Answer\n Correct answer: 3.const\n");
-        else
-        printf(" Invalid choice");
-   }
-   answered[5] = 1; 
-    
-}
-void quiz7(){
-    int option;
-    printf(" What is the result of logical or relational expression in C?");
-    printf("\n 1.True or False\n 2.0 or 1\n 3.0 if an expression is false and any positive number if an expression is true\n 4.None of the mentioned\n");
-    printf(" Enter option: ");
-    scanf("%d",&option);
-    if(option==2){
-        printf(" Correct answer!\n");
-        score++;
-    }
-    else{
-         if(option<=4)
-     printf("Wrong Answer\n Correct answer: 2.0 or 1\n"); 
-        else
-        printf(" Invalid choice");
-   }answered[6] = 1; 
-    
-}
-void quiz8(){
-    int option;
-    printf("Functions in C Language are always ");
-    printf("\n 1. Internal\n 2.Both Internal and External\n 3.External\n 4.External and Internal are not valid terms for functions\n");
-    printf(" Enter option: ");
-    scanf("%d",&option);
-    if(option==3){
-        printf(" Correct answer!\n");
-        score++;
-    }
-    else{
-         if(option<=4)
-        printf("Wrong Answer\n Correct answer: 3.External\n");
-        else
-        printf(" Invalid choice");
-   }
-   answered[7] = 1; 
-    
-}
-void quiz9(){
-    int option;
-    printf("What is an example of iteration in C?");
-    printf("\n 1.for\n 2.while\n 3.do-while\n 4.all of the mentioned\n");
-    printf(" Enter option: ");
-    scanf("%d",&option);
-    if(option==4){
-        printf(" Correct answer!\n");
-        score++;
-    }
-    else{
-         if(option<=4)
-      printf("Wrong Answer\n Correct answer: 4.all of the mentioned\n"); 
-        else
-        printf(" Invalid choice");
-  }
-  answered[8] = 1; 
-    
+
+    quizzes[index].answered = 1;  // Mark this quiz as answered
 }
 
-void Score(){
-    printf("Score:%d",score);
+void showScore() {
+    printf("Score: %d\n", score);
 }
-int main()
-{
-   int choice;
-   printf("\n C Quiz Game");
-	do{
-	    
-		printf("\n 1. Quiz1\n 2. Quiz2\n 3. Quiz3\n 4. Quiz4\n 5. Quiz5\n 6. Quiz6\n 7. Quiz7\n 8. Quiz8\n 9. Quiz9\n 10.Total score\n 0. Exit\n\nEnter your choice: ");
-		
-		scanf("%d",&choice); //Input the choice from the user
-	    // Check if the selected quiz has been answered
+
+int main() {
+    int choice;
+    printf("\nC Quiz Game\n");
+
+    do {
+        printf("\n1. Quiz1\n2. Quiz2\n3. Quiz3\n4. Quiz4\n5. Quiz5\n6. Quiz6\n7. Quiz7\n8. Quiz8\n9. Quiz9\n10. Total score\n0. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        // Check if the selected quiz has been answered
         if (choice >= 1 && choice <= 9) {
-            if (answered[choice - 1] == 1) {
+            if (quizzes[choice - 1].answered == 1) {
                 printf("You have already answered this question. Please select a different one.\n");
             } else {
-                switch (choice) {
-                    case 1: quiz1(); break;
-                    case 2: quiz2(); break;
-                    case 3: quiz3(); break;
-                    case 4: quiz4(); break;
-                    case 5: quiz5(); break;
-                    case 6: quiz6(); break;
-                    case 7: quiz7(); break;
-                    case 8: quiz8(); break;
-                    case 9: quiz9(); break;
-                    default: printf("Invalid Choice\n"); break;
-                }
+                displayQuiz(choice - 1);  // Display the selected quiz
             }
         } else if (choice == 10) {
-            Score();
+            showScore();  // Display the total score
         } else if (choice == 0) {
+            printf("Exiting the quiz game.\n");
             break;
         } else {
             printf("Invalid Choice\n");
         }
-		
-	}		
-	while(choice!=0);
+    } while (choice != 0);
+
+    return 0;
 }
